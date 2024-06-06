@@ -19,7 +19,7 @@ function App() {
     if(username) {
       setLoading(true)
 
-      const response = await axios.get('http://localhost:4000/api/searchusers', {
+      const response = await axios.get('https://golinks-a9az.onrender.com/api/searchusers', {
         params: {
           q: `user:${username}`,
           sort: sortBy,
@@ -34,7 +34,7 @@ function App() {
           if (cachedData) {
             return JSON.parse(cachedData);
           }
-          const repoCountResponse = await axios.get('http://localhost:4000/api/getuserrepos', {
+          const repoCountResponse = await axios.get('https://golinks-a9az.onrender.com/api/getuserrepos', {
             params: {
               repo_url: item.repos_url
             }
