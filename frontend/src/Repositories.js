@@ -11,19 +11,22 @@ export const Repositories = ({repositories}) => {
 
   return (
     <div>{isOpen && currentUser && (
-        <div className='absolute left-0 right-0 w-[700px] ml-auto mr-auto z-50 bg-black/70 rounded-xl p-3 h-96'>
-            <h1 className='text-white text-xl font-bold inline-block'>Statistics - {currentUser.login}</h1>
-            <button onClick={() => setIsOpen(false)} className='absolute right-0 text-white w-10 h-10 mr-2 hover:scale-125 transition-all text-lg bg-neutral-800 rounded-xl'>X</button>
-            <div className='information-container'>
-                <h1 className='text-xl text-white'>{currentUser.repo_count} repositories found</h1>
-                <h1 className='text-xl text-white'>{currentUser.fork_count} total forks</h1>
-                <h1 className='text-xl text-white'>Language Counts:</h1>
-                <ul className='h-40 w-80 mt-4 mb-2 bg-neutral-900 rounded-lg overflow-y-auto overflow-x-auto'>
-                {Object.keys(currentUser.languages).sort(function(a,b){return currentUser.languages[a]-currentUser.languages[b]}).reverse().map(language => (
-                    <h1 className='text-white' key={language}>{language}: {currentUser.languages[language]}</h1>
-                ))}
-                </ul>
-                <a className='px-4 py-2 mt-5 w-1/3 block bg-neutral-700 text-neutral-300 hover:text-neutral-200 hover:bg-neutral-600 transition-all rounded-xl' href = {currentUser.html_url} target="_blank" rel = 'noreferrer noopener'>Open on github</a>
+        <div className='absolute left-0 right-0 top-1/4 w-[700px] ml-auto mr-auto z-50 bg-white rounded-xl p-3 h-96'>
+            <h1 className='text-xl font-bold inline-block text-neutral-800'>Statistics for: <b>{currentUser.login}</b></h1>
+            <button onClick={() => setIsOpen(false)} className='absolute right-0 text-white w-10 h-10 mr-2 hover:scale-105 transition-all text-lg bg-neutral-800 rounded-xl'>X</button>
+            <div className='container flex justify-center'>
+              <img className='mt-8 w-60 h-60 mr-20 rounded-full align-middle border-2' src = {currentUser.avatar_url}/>
+              <div className='information-container text-neutral-800'>
+                  <h1 className='text-xl'><b>{currentUser.repo_count}</b> repositories found</h1>
+                  <h1 className='text-xl'><b>{currentUser.fork_count}</b> total forks</h1>
+                  <h1 className='text-xl font-bold'>Most used languages:</h1>
+                  <ul className='h-40 w-80 mt-4 mb-2 p-2 border-2 bg-neutral-100 text-neutral-600 rounded-lg overflow-y-auto overflow-x-auto'>
+                  {Object.keys(currentUser.languages).sort(function(a,b){return currentUser.languages[a]-currentUser.languages[b]}).reverse().map(language => (
+                      <h1 className='' key={language}><b>{language}:</b> {currentUser.languages[language]}</h1>
+                  ))}
+                  </ul>
+                  <a className='px-4 py-2 mt-5 w-80 text-end block bg-neutral-100 text-neutral-500 hover:text-neutral-600 border-2 hover:bg-neutral-300 transition-all rounded-xl font-semibold' href = {currentUser.html_url} target="_blank" rel = 'noreferrer noopener'>Open on GitHub</a>
+              </div>
             </div>
         </div>
         )}
